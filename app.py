@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return app.send_static_file('index.html')
 
 @app.route('/plot', methods=['POST'])
 def plot():
@@ -43,4 +43,4 @@ def plot():
     return render_template('plot.html', plot_base64=plot_base64)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
