@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, send_from_directory,request,render_template
 import numpy as np
 import matplotlib.pyplot as plt
 from io import BytesIO
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return send_from_directory('', 'index.html')
 
 @app.route('/plot', methods=['POST'])
 def plot():
@@ -43,4 +43,4 @@ def plot():
     return render_template('plot.html', plot_base64=plot_base64)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(debug=True)
